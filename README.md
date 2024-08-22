@@ -29,7 +29,7 @@ project/
 │   ├── Dockerfile
 │   └── docker-compose.yml
 └── extr/
-    └── docker-compose.yml
+    └── .env
 ```
 ## Подходы и примененные паттерны
 * ###  Dependency Injection: Используется для внедрения зависимостей, таких как база данных, в маршруты FastAPI.
