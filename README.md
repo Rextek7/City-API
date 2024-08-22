@@ -73,7 +73,7 @@ docker build -t citiesapi:latest .
 docker-compose up -d
 ```
 ### Использование
-#### Порт отличается он выдаваемого докером ввиду рализчия локальных хостов на Windows и Linux
+#### Порт отличается от выдаваемого докером ввиду рализчия локальных хостов на Windows и Linux
 ```
 http://localhost:8080/docs
 ```
