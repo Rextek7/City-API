@@ -1,0 +1,29 @@
+version: '3.8'  # Указывает версию Docker Compose
+
+services:
+  db:
+    image: postgres:13  # Используем официальный образ PostgreSQL версии 13
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: qwerty
+      POSTGRES_DB: cities
+    ports:
+      - "5432:5432"  # Пробрасываем порт 5432 из контейнера на хост-машину
+    volumes:
+      - postgres_data:/var/lib/postgresql/data  # Сохраняем данные PostgreSQL на хост-машине
+
+  app:
+    image: citiesapi:latest
+    command: uvicorn main:app --host 0.0.0.0 --port 8080
+    volumes:
+      - ./:/app
+    environment:
+      - DB_URL=postgresql://postgres:qwerty@db:5432/cities
+      - API_KEY=d62da517-9fb8-4c24-8f17-7fa962bc3e22
+    depends_on:
+      - db  # Указывает, что контейнер app зависит от db
+    ports:
+      - "8080:8080"  # Пробрасываем порт 8000 из контейнера на хост-машину
+
+volumes:
+  postgres_data:
